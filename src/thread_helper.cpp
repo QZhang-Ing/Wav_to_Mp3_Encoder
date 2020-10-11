@@ -72,7 +72,7 @@ void ThreadHelper::init(int numFiles, std::vector<std::string> files_list)
 // or defined as static member of class ThreadHelper
 pthread_mutex_t mutex_locker = PTHREAD_MUTEX_INITIALIZER;
 // Flag to determine if all files are encoded to mp3
-int count_encoded_files = 0;
+static int count_encoded_files = 0;
 
 /**
  * Thread function
