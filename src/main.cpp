@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     auto files_list = make_files_list(argv[1]);
     unsigned int numFiles = files_list.size();
     std::cout << "There are " << numFiles
-        << " wave files in the directory to be converted into mp3 files, Exit!\n"
+        << " wave files in the directory to be converted into mp3 files\n"
         << "--------------------------------------------------------------" << std::endl;
     if (!(numFiles > 0)) return EXIT_SUCCESS;
 
