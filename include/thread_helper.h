@@ -48,7 +48,7 @@ private:
     std::vector<WorkerArgs> thread_args;
     std::vector<pthread_t> threads;
     int NUM_THREADS;
-    double time;
+    double time = 0.0;
 };
 
 
