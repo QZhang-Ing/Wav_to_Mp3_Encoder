@@ -6,7 +6,6 @@
  * @version 1.0 05/10/2020
 */
 
-//#include <cstddef>
 #include "thread_helper.h"
 #include "files_list.h"
 

@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <cstddef>
-#include <lame/lame.h>
+#include <lame.h>
 
 constexpr std::size_t BUFFER_SIZE = 8192;
 
