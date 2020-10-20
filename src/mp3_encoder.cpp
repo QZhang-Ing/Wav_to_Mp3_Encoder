@@ -45,7 +45,6 @@ int Encoder::init(const char* wavFilePath, const char* mp3FilePath,
         exit(1);
     }
 
-    lame = lame_init();
     lame_set_in_samplerate(lame, sampleRate);
     lame_set_num_channels(lame, nChannels);
     (nChannels == 1) ? lame_set_mode(lame, MONO) : lame_set_mode(lame, STEREO);
@@ -65,15 +64,13 @@ int Encoder::init(const char* wavFilePath, const char* mp3FilePath,
 */
 void Encoder::encode(int numChannels)
 {
-    std::size_t read, write;
+    size_t read, write;
  
     constexpr auto WAV_SIZE = BUFFER_SIZE;
     constexpr auto MP3_SIZE = BUFFER_SIZE;
 
     short int* wav_buffer = new short int[WAV_SIZE*numChannels];
     unsigned char* mp3_buffer = new unsigned char[MP3_SIZE];
-    //short int wav_buffer[WAV_SIZE* numChannels];
-    //unsigned char mp3_buffer[MP3_SIZE];
 
     do
     {

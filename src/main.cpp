@@ -6,7 +6,7 @@
  * @version 1.0 05/10/2020
 */
 
-#include <cstddef>
+//#include <cstddef>
 #include "thread_helper.h"
 #include "files_list.h"
 
@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 
     // Retrieve pathes of all wave files in a STL vector
     auto files_list = make_files_list(argv[1]);
-    unsigned int numFiles = files_list.size();
+    const size_t numFiles = files_list.size();
     std::cout << "There are " << numFiles
         << " wave files in the directory to be converted into mp3 files\n"
         << "--------------------------------------------------------------" << std::endl;

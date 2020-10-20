@@ -11,6 +11,7 @@
 #include <pthread.h>
 #include <vector>
 #include <string>
+#include <stddef.h>
 
 /**
  * detect machine cpu infomation
@@ -25,7 +26,7 @@ struct WorkerArgs
 {
     std::vector<std::string> wavNames;
     bool* completed;
-    int numFiles;
+    size_t numFiles;
     int threadId;
     int processedFiles;
 };
@@ -39,7 +40,7 @@ public:
     ThreadHelper() {}
     ThreadHelper(int num) : NUM_THREADS(num) {}
     ~ThreadHelper() {}
-    void init(int numFiles, std::vector<std::string> files_list);
+    void init(const size_t numFiles, std::vector<std::string> files_list);
     static void* encode_worker(void* arg);
     void threading();
     void summary();
@@ -47,7 +48,7 @@ public:
 private:
     std::vector<WorkerArgs> thread_args;
     std::vector<pthread_t> threads;
-    int NUM_THREADS;
+    int NUM_THREADS = 4;
     double time = 0.0;
 };
 

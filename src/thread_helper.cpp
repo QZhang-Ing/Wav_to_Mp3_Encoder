@@ -7,7 +7,6 @@
  *
 */
 #include <iostream>
-
 #include "thread_helper.h"
 #include "header_reader.h"
 #include "mp3_encoder.h"
@@ -43,12 +42,12 @@ int get_cpuCount()
  * @param number of wave files
  * @param lists of file pathes
 */
-void ThreadHelper::init(int numFiles, std::vector<std::string> files_list)
+void ThreadHelper::init(const size_t numFiles, std::vector<std::string> files_list)
 {
     // array as indication that which file is already encoded
     // default -> false -> not encoded
     bool* filesFinished = new bool[numFiles];
-    for (int i = 0; i < numFiles; i++) filesFinished[i] = false;
+    for (size_t i = 0; i < numFiles; ++i) filesFinished[i] = false;
 
     thread_args.reserve(NUM_THREADS);
     threads.reserve(NUM_THREADS);
@@ -85,11 +84,11 @@ void* ThreadHelper::encode_worker(void* arg)
 
     while (count_encoded_files < args->numFiles)
     {
-        int fileNo = 0;    // Which file is currently converted
+        size_t fileNo = 0;    // Which file is currently converted
 
         // Lock access to disk
         pthread_mutex_lock(&mutex_locker);
-        for (int i = 0; i < args->numFiles; ++i)
+        for (size_t i = 0; i < args->numFiles; ++i)
         {
             if (!args->completed[i]) // if ith file not converted yet
             {
@@ -156,7 +155,7 @@ void ThreadHelper::threading()
 
     // timestamp
     clock_t tEnd = clock();
-    time = double(tEnd - tBegin) / CLOCKS_PER_SEC;
+    time = (double(tEnd) - double(tBegin)) / CLOCKS_PER_SEC;
 }
 
 /**

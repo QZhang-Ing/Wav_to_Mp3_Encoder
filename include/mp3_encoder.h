@@ -21,7 +21,7 @@ constexpr std::size_t BUFFER_SIZE = 8192;
 class Encoder
 {
 public:
-    Encoder() {}
+    Encoder() { lame = lame_init(); }
     ~Encoder();
     int init(const char* wavFilePath, const char* mp3FilePath, int sampleRate, int nChannels);
     void encode(int numChannels);
@@ -29,8 +29,8 @@ public:
         int sampleRate, int nChannels);
 
 private:
-    FILE* wavFile;
-    FILE* mp3File;
+    FILE* wavFile = nullptr;
+    FILE* mp3File = nullptr;
     lame_t lame;
 };
 
